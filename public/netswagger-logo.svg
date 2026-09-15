@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-labelledby="title desc">
+  <title id="title">NetSwagger logo</title>
+  <desc id="desc">Red circular NetSwagger badge with the N emblem and wordmark</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".35"/>
+    </filter>
+  </defs>
+  <circle cx="110" cy="88" r="77" fill="#fff" filter="url(#shadow)"/>
+  <circle cx="110" cy="88" r="68" fill="#f10d16"/>
+  <circle cx="110" cy="88" r="56" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 5"/>
+  <circle cx="110" cy="88" r="42" fill="#080b0e" stroke="#fff" stroke-width="4"/>
+  <path d="M83 115V61h14l29 34V61h11v54h-14L94 81v34H83Z" fill="#fff"/>
+  <path d="M90 68h42M90 108h42" stroke="#080b0e" stroke-width="3" opacity=".9"/>
+  <rect x="28" y="142" width="164" height="43" rx="3" fill="#f10d16" stroke="#fff" stroke-width="5" filter="url(#shadow)"/>
+  <text x="110" y="171" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="middle">NetSwagger</text>
+</svg>
