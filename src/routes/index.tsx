@@ -50,42 +50,49 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+// `stack` is the muted hint in each card's top corner. Edit it to match what the team really uses.
 const services = [
   {
     icon: Smartphone,
     title: "Mobile Development",
     text: "Your idea, in the hands of your users. Mobile experiences built around real needs.",
     tag: "Made for everyday life",
+    stack: "iOS · Android",
   },
   {
     icon: Globe2,
     title: "Web Development",
     text: "Purposeful websites and web applications that bring your business to life online.",
     tag: "Built for the browser",
+    stack: "React · Node",
   },
   {
     icon: Apple,
     title: "iOS Development",
     text: "Thoughtful apps that feel right at home on Apple devices.",
     tag: "Native Apple experiences",
+    stack: "Swift",
   },
   {
     icon: CircleDot,
     title: "Android Development",
     text: "Reliable, intuitive applications for the diverse world of Android.",
     tag: "Designed for Android",
+    stack: "Kotlin",
   },
   {
     icon: Layers,
     title: "React Native",
     text: "A connected mobile experience across iOS and Android with cross-platform development.",
     tag: "Two platforms. One vision.",
+    stack: "Cross-platform",
   },
   {
     icon: PencilRuler,
     title: "UX/UI Design",
     text: "Clear user journeys and considered interfaces that make complex things feel simple.",
     tag: "People at the center",
+    stack: "Figma",
   },
 ];
 const projects = [
@@ -355,13 +362,13 @@ function Index() {
             </p>
           </div>
           <div className="services-grid">
-            {services.map(({ icon: Icon, ...service }, index) => (
+            {services.map(({ icon: Icon, ...service }) => (
               <article className="service-card" key={service.title}>
                 <div className="card-top">
                   <span className="service-icon">
                     <Icon size={23} strokeWidth={1.6} />
                   </span>
-                  <span className="service-number">0{index + 1}</span>
+                  <span className="service-meta">{service.stack}</span>
                 </div>
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
@@ -434,7 +441,6 @@ function Index() {
                 <div className={`project-image ${project.color}`}>
                   <div className="project-visual-label" aria-hidden="true">
                     <span>{project.name}</span>
-                    <span>0{index + 1}</span>
                   </div>
                   <img
                     src={project.image}

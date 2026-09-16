@@ -662,11 +662,13 @@
   width: 25px;
   height: 25px;
 }
-.service-number {
+/* Muted capability hint in the top corner of each service card. */
+.service-meta {
   color: #777b76;
   font-size: 11px;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 .service-card p,
 .values-grid p,
@@ -1665,11 +1667,6 @@
   line-height: 1;
   font-weight: 500;
   letter-spacing: 0.12em;
-}
-#work .project-visual-label > span:last-child {
-  font-variant-numeric: tabular-nums;
-  color: #6b7169;
-  letter-spacing: 0.03em;
 }
 #work .project-image img {
   border-radius: 4px;
@@ -2699,12 +2696,17 @@
     border-color 0.25s;
 }
 .tech-mark {
+  display: grid;
+  place-items: center;
   width: 34px;
   height: 34px;
-  background-color: #8d928c;
-  -webkit-mask: var(--mark) center / contain no-repeat;
-  mask: var(--mark) center / contain no-repeat;
-  transition: background-color 0.25s;
+  color: #8d928c;
+  transition: color 0.25s;
+}
+.tech-mark svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
 }
 .tech-name {
   margin: 0;
@@ -2720,7 +2722,7 @@
     border-color: color-mix(in oklab, var(--brand) 20%, #fff);
   }
   .tech-item:hover .tech-mark {
-    background-color: var(--brand);
+    color: var(--brand);
   }
   .tech-item:hover .tech-name {
     color: var(--ink);

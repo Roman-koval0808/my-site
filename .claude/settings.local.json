@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(npx eslint src/components/contact-section.tsx src/lib/contact-schema.ts src/lib/contact-submit.ts src/server.ts tests/contact.test.ts; \"eslint exit: $LASTEXITCODE\")"
-    ]
-  }
-}
