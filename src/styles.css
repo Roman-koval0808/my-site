@@ -2765,3 +2765,246 @@
     height: 30px;
   }
 }
+
+/*
+ * Payment details at /freelancer/<record id>: one centred document rather than
+ * a profile layout — letterhead rule, oversized name, then a label/value table
+ * set on hairlines.
+ */
+.payee {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+.payee main {
+  flex: 1;
+}
+.payee-back {
+  font-size: 13px;
+  color: var(--subtle);
+}
+.payee-main {
+  background: linear-gradient(180deg, #faf8f6, #fff 420px);
+  padding-block: clamp(36px, 4.6vw, 72px) var(--section-space);
+}
+.payee-sheet {
+  position: relative;
+  width: min(940px, calc(100% - clamp(32px, 7vw, 96px)));
+  margin-inline: auto;
+  padding: clamp(32px, 4.4vw, 68px);
+  border: 1px solid #e8e6e1;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 28px 70px -34px #3a332a2e;
+  overflow: hidden;
+}
+/* Letterhead rule across the top edge of the sheet. */
+.payee-sheet::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), #e0583f);
+}
+/* Holds the PID alone, set to the top-right like a document reference. */
+.payee-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  padding-bottom: clamp(24px, 3vw, 38px);
+}
+.payee-reference {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+}
+.payee-reference small {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #8b8f88;
+}
+.payee-reference > span {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+  color: #55594f;
+}
+.payee-sheet h1 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.8vw, 70px);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+  margin: 0;
+  text-wrap: balance;
+}
+.payee-role {
+  margin: 15px 0 0;
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.6;
+  color: var(--subtle);
+}
+.payee-role strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+.payee-summary {
+  max-width: 62ch;
+  margin: clamp(18px, 2.2vw, 26px) 0 0;
+  font-size: clamp(15px, 1.5vw, 16.5px);
+  line-height: 1.85;
+  color: var(--subtle);
+  text-wrap: pretty;
+}
+.payee-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  margin-top: clamp(26px, 3vw, 38px);
+}
+.site .payee-copy-all {
+  gap: 10px;
+}
+.payee-table {
+  margin: clamp(28px, 3.4vw, 44px) 0 0;
+  border-top: 1px solid #e9e9e3;
+}
+.payee-line {
+  display: grid;
+  grid-template-columns: minmax(110px, 180px) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 8px 32px;
+  padding: clamp(19px, 2.3vw, 29px) 0;
+  border-bottom: 1px solid #efefe9;
+}
+.payee-line dt {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #7c8078;
+}
+.payee-line dd {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 0;
+  margin: 0;
+}
+.payee-value {
+  font-family: var(--font-display);
+  font-size: clamp(19px, 2.1vw, 26px);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  transition: color 0.2s;
+}
+a.payee-value {
+  text-underline-offset: 6px;
+}
+/* Icon-only so four of them in a column stay quiet. */
+.site .payee-copy {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #a2a69f;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    color 0.2s;
+}
+.site .payee-copy.is-copied {
+  border-color: #cfdfc4;
+  background: #f4f8ef;
+  color: #5c7a45;
+}
+.payee-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: clamp(26px, 3vw, 38px) 0 0;
+  font-size: 13px;
+  line-height: 1.75;
+  color: #7a736c;
+  text-wrap: pretty;
+}
+.payee-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #c08878;
+}
+.payee-missing h1 {
+  font-size: clamp(30px, 3.4vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+}
+.payee-missing > p {
+  max-width: 52ch;
+  margin: 20px 0 32px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--subtle);
+  text-wrap: pretty;
+}
+.payee-missing-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+}
+.payee-footer .footer-bottom {
+  border-top: 0;
+  padding-block: 26px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .payee-back:hover {
+    color: var(--red);
+  }
+  a.payee-value:hover {
+    color: var(--red);
+    text-decoration: underline;
+  }
+  .site .payee-copy:hover {
+    border-color: #dedfd8;
+    background: #fafaf7;
+    color: #55594f;
+  }
+  .site .payee-copy.is-copied:hover {
+    border-color: #b7cfa7;
+    background: #eff5e8;
+    color: #5c7a45;
+  }
+}
+@media (max-width: 620px) {
+  .payee-line {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+  .payee-line dt {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8b8f88;
+  }
+  .payee-actions {
+    gap: 16px;
+  }
+  .site .payee-copy-all {
+    width: 100%;
+  }
+}

@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FreelancerUuidRouteImport } from './routes/freelancer/$uuid'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FreelancerUuidRoute = FreelancerUuidRouteImport.update({
+  id: '/freelancer/$uuid',
+  path: '/freelancer/$uuid',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/freelancer/$uuid': typeof FreelancerUuidRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/freelancer/$uuid': typeof FreelancerUuidRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/freelancer/$uuid': typeof FreelancerUuidRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/freelancer/$uuid'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/freelancer/$uuid'
+  id: '__root__' | '/' | '/freelancer/$uuid'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FreelancerUuidRoute: typeof FreelancerUuidRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/freelancer/$uuid': {
+      id: '/freelancer/$uuid'
+      path: '/freelancer/$uuid'
+      fullPath: '/freelancer/$uuid'
+      preLoaderRoute: typeof FreelancerUuidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FreelancerUuidRoute: FreelancerUuidRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

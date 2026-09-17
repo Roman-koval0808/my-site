@@ -25,7 +25,7 @@ import {
   Apple,
   CircleDot,
 } from "lucide-react";
-import logo from "@/assets/netswagger-logo.png";
+import { Brand } from "@/components/brand";
 import picmi from "@/assets/portfolio/picmi.jpg";
 import fieldr from "@/assets/portfolio/fieldr.jpg";
 import craftMusic from "@/assets/portfolio/craft-music.jpg";
@@ -173,16 +173,6 @@ const navigation = [
   ["Why NetSwagger", "why"],
   ["Our process", "process"],
 ];
-function Brand() {
-  return (
-    <span className="brand">
-      <img src={logo} alt="" width="42" height="46" />
-      <span>
-        NetSwagger<span className="brand-dot">.</span>
-      </span>
-    </span>
-  );
-}
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <p className="eyebrow">
