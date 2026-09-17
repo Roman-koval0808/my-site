@@ -275,11 +275,7 @@ function ProfileRecord() {
             Scalable systems <b>•</b> Cloud infrastructure <b>•</b> AI integrations
           </p>
           <h1 id="payee-name">{payee.name}</h1>
-          <p className="profile-role">
-            {payee.role}
-            <br />
-            {payee.company}
-          </p>
+          <p className="profile-role">{payee.role}</p>
           <p className="profile-summary">{summaryFor(payee)}</p>
           <ul className="profile-capabilities">
             {capabilities.map(({ icon: Icon, name, description }) => (
