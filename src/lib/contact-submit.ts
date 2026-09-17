@@ -31,5 +31,5 @@ export function createSimulatedSubmitter(delayMs = 1200): ContactSubmitter {
   };
 }
 
-// Swap point: replace with a ContactSubmitter that calls your email service or API.
-export const submitContactRequest: ContactSubmitter = createSimulatedSubmitter();
+// Real delivery lives in contact-delivery.ts, which calls the server function in contact-server.ts.
+// This module stays free of server imports so it can be unit tested in plain Node.

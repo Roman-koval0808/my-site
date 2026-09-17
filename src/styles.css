@@ -1911,6 +1911,23 @@
   font-weight: 500;
   color: var(--ink);
 }
+/* Trustpilot TrustBox, and the link it falls back to before the widget is configured. */
+.trustpilot-widget,
+.trustpilot-fallback {
+  margin: 0 0 32px;
+}
+.trustpilot-fallback {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--subtle);
+  transition: color 0.2s;
+}
+.trustpilot-fallback svg {
+  flex-shrink: 0;
+  color: #72776c;
+}
 .consultation-details {
   border-top: 1px solid var(--line);
   padding-top: 26px;
@@ -2169,7 +2186,8 @@
   }
 }
 @media (hover: hover) and (pointer: fine) {
-  .consultation-details a:hover {
+  .consultation-details a:hover,
+  .trustpilot-fallback:hover {
     color: var(--red);
   }
   .consultation-field input:not(:focus):not([aria-invalid="true"]):hover,

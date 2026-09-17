@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test:contact": "node --experimental-strip-types --test tests/contact.test.ts"
+    "test:contact": "node --experimental-strip-types --test tests/contact.test.ts tests/contact-email.test.ts tests/smtp.test.ts"
   },
   "overrides": {
     "rolldown": "1.2.1"

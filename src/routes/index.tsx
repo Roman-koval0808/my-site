@@ -17,6 +17,8 @@ import {
   X,
   Mail,
   Phone,
+  Linkedin,
+  Star,
   MapPin,
   Check,
   Layers,
@@ -45,6 +47,13 @@ export const Route = createFileRoute("/")({
           "Thoughtful software. Real partnership. Mobile, web and UX/UI development with NetSwagger.",
       },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      // Trustpilot's TrustBox bootstrap, which upgrades any .trustpilot-widget on the page.
+      {
+        src: "https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js",
+        async: true,
+      },
     ],
   }),
   component: Index,
@@ -601,6 +610,16 @@ function Index() {
             </a>
             <a href="tel:+13362986469">
               <Phone size={15} /> 336-298-6469
+            </a>
+            <a href="https://www.linkedin.com/company/netswagger" target="_blank" rel="noreferrer">
+              <Linkedin size={15} /> LinkedIn
+            </a>
+            <a
+              href="https://www.trustpilot.com/review/netswagger.org"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Star size={15} /> Trustpilot
             </a>
           </div>
           <div>

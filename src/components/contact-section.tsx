@@ -1,6 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
-import { ArrowUpRight, Check, CircleAlert, LoaderCircle, Mail, MapPin, Phone } from "lucide-react";
+import {
+  ArrowUpRight,
+  Check,
+  CircleAlert,
+  Linkedin,
+  LoaderCircle,
+  Mail,
+  MapPin,
+  Phone,
+  Star,
+} from "lucide-react";
 import {
   contactBudgets,
   contactSchema,
@@ -10,7 +20,9 @@ import {
   fieldErrors,
 } from "@/lib/contact-schema";
 import type { ContactErrors, ContactValues } from "@/lib/contact-schema";
-import { ContactSubmitError, submitContactRequest } from "@/lib/contact-submit";
+import { ContactSubmitError } from "@/lib/contact-submit";
+import { deliveryFailure, submitContactRequest } from "@/lib/contact-delivery";
+import { TrustpilotWidget } from "@/components/trustpilot-widget";
 
 const textFields = [
   {
@@ -69,8 +81,7 @@ const fieldOrder: (keyof ContactValues)[] = [
   "budget",
   "message",
 ];
-const genericFailure =
-  "We couldn't confirm your submission. Please try again, email info@netswagger.org, or call 336-298-6469.";
+const genericFailure = deliveryFailure;
 const blockedFailure = "We couldn't submit this request. Please contact us by email or phone.";
 const duplicateNotice =
   "You've already sent this request, and we'll get back to you soon. To send a new one, change your details first.";
@@ -201,6 +212,7 @@ export function ContactSection() {
               <strong>like it's our own.</strong>
             </p>
           </div>
+          <TrustpilotWidget />
           <div className="consultation-details">
             <p className="consultation-detail-title">Prefer to speak to someone now?</p>
             <a href="tel:+13362986469">
@@ -214,6 +226,24 @@ export function ContactSection() {
               <Mail size={19} strokeWidth={1.5} />
               <span>
                 <small>SEND US AN EMAIL</small>info@netswagger.org
+              </span>
+              <ArrowUpRight size={16} />
+            </a>
+            <a href="https://www.linkedin.com/company/netswagger" target="_blank" rel="noreferrer">
+              <Linkedin size={19} strokeWidth={1.5} />
+              <span>
+                <small>FOLLOW US</small>NetSwagger on LinkedIn
+              </span>
+              <ArrowUpRight size={16} />
+            </a>
+            <a
+              href="https://www.trustpilot.com/review/netswagger.org"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Star size={19} strokeWidth={1.5} />
+              <span>
+                <small>READ OUR REVIEWS</small>NetSwagger on Trustpilot
               </span>
               <ArrowUpRight size={16} />
             </a>
