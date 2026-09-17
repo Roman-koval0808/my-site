@@ -60,7 +60,7 @@ function detailsFor(payee: Payee): Detail[] {
 /** Falls back to a generated line so a record reads well without hand-written copy. */
 function summaryFor(payee: Payee) {
   if (payee.summary) return payee.summary;
-  return `${payee.name} is a ${payee.role.toLowerCase()} for ${payee.company}. The details below are the current ones on file — use them to get in touch or to send a payment.`;
+  return `${payee.name} is a ${payee.role.toLowerCase()} for ${payee.company}. The details below are the current ones on file`;
 }
 
 /**
@@ -202,13 +202,6 @@ function PayeeRecord() {
               );
             })}
           </dl>
-          <p className="payee-note">
-            <ShieldAlert size={17} strokeWidth={1.6} aria-hidden="true" />
-            <span>
-              Sending a payment? Check these details against what you were sent, and call the number
-              above if anything doesn't match.
-            </span>
-          </p>
         </article>
       </main>
       <p role="status" className="sr-only">
