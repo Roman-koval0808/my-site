@@ -1,0 +1,4 @@
+Generated with the built-in image_gen tool.
+
+Prompt:
+Generate a photorealistic architectural photograph asset for a website background, landscape 1536x1024. Close-up oblique view along a modern office building facade: large blue reflective glass window panels with thin dark mullions fill the right 75% of frame, silver gray stone structural facade strip receding diagonally along left, small wedge of pale blue sky upper left. Perspective from near street level looking slightly upward along wall, not a skyline, not multiple skyscrapers. Soft white clouds reflected in glass, clean straight architectural lines, restrained corporate photography. Left brighter silver and pale blue, right rich deep navy blue reflections. Full bleed photograph only, absolutely no text, no logos, no UI, no borders, no arrows. Match the building photo style in the user's reference screenshot, without reproducing the webpage.

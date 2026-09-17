@@ -14,10 +14,15 @@ export type Payee = {
   company: string;
   phone: string;
   email: string;
+  companyEmail?: string;
   /** Written one line per row, exactly as it should appear on an envelope. */
   address: string[];
   /** Profile summary. One is generated from the role and company when unset. */
   summary?: string;
+  /** Skills shown on this contact profile when provided. */
+  skills?: string[];
+  /** Defaults to the original payment-details layout. */
+  layout?: "payment" | "profile";
 };
 
 const payees: Payee[] = [
@@ -33,10 +38,22 @@ const payees: Payee[] = [
   {
     id: "12301708711284",
     name: "Angel Perez",
-    role: "Company Contact",
+    layout: "profile",
+    role: "Senior Software Engineer",
+    skills: [
+      "Full-stack Development",
+      "Cloud Infrastructure",
+      "Data Engineering",
+      "AI / LLM Integrations",
+      "Secure Architecture",
+      "Performance Optimization",
+    ],
+    summary:
+      "Angel Perez is a Senior Software Engineer with 9 years of experience building scalable full-stack applications, data platforms, and AI-powered systems. His expertise spans modern web development, cloud infrastructure, data engineering, and production AI/LLM integrations, with a strong focus on secure architecture, reliability, performance, and maintainable software.",
     company: "NetSwagger",
     phone: "+380 957086130",
     email: "morhunvitalii65@gmail.com",
+    companyEmail: "angel@netswagger.org",
     address: ["Poltava Street, Building 162, Apartment 5", "Karlivka, 39500", "Ukraine"],
   },
 ];

@@ -1,6 +1,21 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowUpRight, Check, Copy, ShieldAlert } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Building2,
+  Check,
+  Cloud,
+  Code2,
+  Copy,
+  Cpu,
+  Database,
+  Mail,
+  MapPin,
+  Phone,
+  ShieldCheck,
+} from "lucide-react";
+
 import { Brand } from "@/components/brand";
 import { findPayee, type Payee } from "@/lib/payees";
 
@@ -14,12 +29,12 @@ export const Route = createFileRoute("/freelancer/$uuid")({
     meta: [
       {
         title: loaderData
-          ? `${loaderData.name} · Payment details | NetSwagger`
-          : "Payment details | NetSwagger",
+          ? `${loaderData.name} · ${loaderData.layout === "profile" ? "Contact details" : "Payment details"} | NetSwagger`
+          : "Contact details | NetSwagger",
       },
       {
         name: "description",
-        content: "Payment and contact details published by NetSwagger.",
+        content: "Professional profile and contact details published by NetSwagger.",
       },
       // Personal contact details don't belong in a search index. Left crawlable
       // on purpose: a robots.txt block would stop crawlers reading this tag.
@@ -52,7 +67,18 @@ function detailsFor(payee: Payee): Detail[] {
       lines: [payee.email],
       href: `mailto:${payee.email}`,
     },
+    ...(payee.companyEmail
+      ? [
+          {
+            key: "companyEmail",
+            label: "Company email",
+            lines: [payee.companyEmail],
+            href: `mailto:${payee.companyEmail}`,
+          },
+        ]
+      : []),
     { key: "address", label: "Address", lines: payee.address },
+    ...(payee.skills?.length ? [{ key: "skills", label: "Skills", lines: payee.skills }] : []),
     { key: "company", label: "Company", lines: [payee.company] },
   ];
 }
@@ -118,7 +144,26 @@ function PageFooter() {
   );
 }
 
+const capabilities = [
+  { icon: Cloud, name: "Scalable Systems", description: "Building for growth" },
+  { icon: Database, name: "Cloud Infrastructure", description: "Modern & reliable" },
+  { icon: Cpu, name: "AI Integrations", description: "Turning ideas into impact" },
+  { icon: ShieldCheck, name: "Reliable Software", description: "Secure by design" },
+];
+const contactIcons = {
+  phone: Phone,
+  email: Mail,
+  companyEmail: Mail,
+  address: MapPin,
+  company: Building2,
+  skills: Code2,
+};
+
 function PayeeRecord() {
+  const payee = Route.useLoaderData();
+  return payee.layout === "profile" ? <ProfileRecord /> : <PaymentRecord />;
+}
+function PaymentRecord() {
   const payee = Route.useLoaderData();
   const { copied, note, copy } = useCopy();
   const details = detailsFor(payee);
@@ -212,6 +257,110 @@ function PayeeRecord() {
   );
 }
 
+function ProfileRecord() {
+  const payee = Route.useLoaderData();
+  const { copied, note, copy } = useCopy();
+  const details = detailsFor(payee);
+
+  return (
+    <div className="site payee profile-page">
+      <a className="skip-link" href="#record">
+        Skip to contact details
+      </a>
+      <div className="profile-photo" aria-hidden="true" />
+      <PageHeader />
+      <main className="profile-shell profile-main" id="record">
+        <article className="profile-intro" aria-labelledby="payee-name">
+          <p className="profile-eyebrow">
+            Scalable systems <b>•</b> Cloud infrastructure <b>•</b> AI integrations
+          </p>
+          <h1 id="payee-name">{payee.name}</h1>
+          <p className="profile-role">
+            {payee.role}
+            <br />
+            {payee.company}
+          </p>
+          <p className="profile-summary">{summaryFor(payee)}</p>
+          <ul className="profile-capabilities">
+            {capabilities.map(({ icon: Icon, name, description }) => (
+              <li key={name}>
+                <span className="profile-icon">
+                  <Icon size={21} aria-hidden="true" />
+                </span>
+                <div>
+                  <strong>{name}</strong>
+                  <small>{description}</small>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="profile-company">
+            <span className="profile-company-icon">
+              <Building2 size={31} aria-hidden="true" />
+            </span>
+            <div>
+              <p className="profile-eyebrow">Company</p>
+              <strong>{payee.company}</strong>
+              <p>Building secure, scalable digital systems.</p>
+            </div>
+          </div>
+        </article>
+        <section className="profile-contact" aria-labelledby="contact-heading">
+          <p className="profile-eyebrow">Contact information</p>
+          <h2 id="contact-heading">Get in touch with {payee.name.split(" ")[0]}</h2>
+          <dl>
+            {details.map((detail) => {
+              const Icon = contactIcons[detail.key as keyof typeof contactIcons];
+              const done = copied === detail.key;
+              return (
+                <div className="profile-contact-row" key={detail.key}>
+                  <span className="profile-icon">
+                    <Icon size={23} aria-hidden="true" />
+                  </span>
+                  <div className="profile-contact-value">
+                    <dt>{detail.label}</dt>
+                    <dd>
+                      {detail.key === "skills" ? (
+                        <ul className="profile-skills">
+                          {detail.lines.map((skill) => (
+                            <li key={skill}>{skill}</li>
+                          ))}
+                        </ul>
+                      ) : detail.href ? (
+                        <a href={detail.href}>{detail.lines[0]}</a>
+                      ) : (
+                        detail.lines.map((line, index) => (
+                          <Fragment key={line}>
+                            {index > 0 && <br />}
+                            {line}
+                          </Fragment>
+                        ))
+                      )}
+                    </dd>
+                  </div>
+                  <button
+                    type="button"
+                    className="profile-copy"
+                    onClick={() => copy(detail.key, detail.label, detail.lines.join(", "))}
+                    aria-label={
+                      done ? detail.label + " copied" : "Copy " + detail.label.toLowerCase()
+                    }
+                  >
+                    {done ? <Check size={15} /> : <Copy size={15} />}
+                  </button>
+                </div>
+              );
+            })}
+          </dl>
+        </section>
+      </main>
+      <p role="status" className="sr-only">
+        {note}
+      </p>
+      <PageFooter />
+    </div>
+  );
+}
 function MissingRecord() {
   return (
     <div className="site payee">
