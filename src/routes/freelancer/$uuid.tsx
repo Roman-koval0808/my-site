@@ -79,14 +79,14 @@ function detailsFor(payee: Payee): Detail[] {
       : []),
     { key: "address", label: "Address", lines: payee.address },
     ...(payee.skills?.length ? [{ key: "skills", label: "Skills", lines: payee.skills }] : []),
-    { key: "company", label: "Company", lines: [payee.company] },
+    ...(payee.company ? [{ key: "company", label: "Company", lines: [payee.company] }] : []),
   ];
 }
 
 /** Falls back to a generated line so a record reads well without hand-written copy. */
 function summaryFor(payee: Payee) {
   if (payee.summary) return payee.summary;
-  return `${payee.name} is a ${payee.role.toLowerCase()} for ${payee.company}. The details below are the current ones on file`;
+  return `${payee.name} is a ${payee.role.toLowerCase()}${payee.company ? ` for ${payee.company}` : ""}. The details below are the current ones on file`;
 }
 
 /**
@@ -168,7 +168,7 @@ function PaymentRecord() {
   const { copied, note, copy } = useCopy();
   const details = detailsFor(payee);
   const everything = [
-    `${payee.name} — ${payee.role}, ${payee.company}`,
+    `${payee.name} — ${payee.role}${payee.company ? `, ${payee.company}` : ""}`,
     ...details.map((detail) => `${detail.label}: ${detail.lines.join(", ")}`),
     `PID: ${payee.id}`,
   ].join("\n");
@@ -189,7 +189,13 @@ function PaymentRecord() {
           </div>
           <h1 id="payee-name">{payee.name}</h1>
           <p className="payee-role">
-            {payee.role} at <strong>{payee.company}</strong>
+            {payee.role}
+            {payee.company && (
+              <>
+                {" "}
+                at <strong>{payee.company}</strong>
+              </>
+            )}
           </p>
           <p className="payee-summary">{summaryFor(payee)}</p>
           <div className="payee-actions">
@@ -290,16 +296,18 @@ function ProfileRecord() {
               </li>
             ))}
           </ul>
-          <div className="profile-company">
-            <span className="profile-company-icon">
-              <Building2 size={31} aria-hidden="true" />
-            </span>
-            <div>
-              <p className="profile-eyebrow">Company</p>
-              <strong>{payee.company}</strong>
-              <p>Building secure, scalable digital systems.</p>
+          {payee.company && (
+            <div className="profile-company">
+              <span className="profile-company-icon">
+                <Building2 size={31} aria-hidden="true" />
+              </span>
+              <div>
+                <p className="profile-eyebrow">Company</p>
+                <strong>{payee.company}</strong>
+                <p>Building secure, scalable digital systems.</p>
+              </div>
             </div>
-          </div>
+          )}
         </article>
         <section className="profile-contact" aria-labelledby="contact-heading">
           <p className="profile-eyebrow">Contact information</p>

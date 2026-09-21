@@ -11,7 +11,7 @@ export type Payee = {
   id: string;
   name: string;
   role: string;
-  company: string;
+  company?: string;
   phone: string;
   email: string;
   companyEmail?: string;
@@ -26,6 +26,26 @@ export type Payee = {
 };
 
 const payees: Payee[] = [
+  {
+    id: "12301708711685",
+    name: "Pedro Diaz",
+    layout: "profile",
+    role: "Senior Lead Software Engineer",
+    phone: "+48 459567619",
+    email: "jfpmanager1025@outlook.com",
+    skills: [
+      "Full-stack Development",
+      "C#",
+      ".NET Core",
+      "Secure Architecture",
+      "Performance Optimization",
+    ],
+    company: "NetSwagger",
+    companyEmail: "pedro@netswagger.org",
+    address: ["Chmielna 21", "00-021 Warszawa", "Poland"],
+    summary:
+      "Pedro Diaz is a Senior/Lead Software Engineer with 10+ years of professional experience directing enterprise software architectures, healthcare interoperability frameworks, and high-performance clinical data platforms. He specializes deeply in full-stack C# / .NET Core engineering, FHIR-compliant API development, and scalable MongoDB document modeling.",
+  },
   {
     id: "12301708710950",
     name: "Brandon Jackson",
