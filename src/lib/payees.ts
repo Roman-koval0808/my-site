@@ -27,6 +27,26 @@ export type Payee = {
 
 const payees: Payee[] = [
   {
+    id: "12301708711549",
+    name: "Brandon Lee",
+    layout: "profile",
+    role: "Angular Developer II / Software Engineer",
+    phone: "+62 82228019294",
+    email: "brandonLee16098@outlook.com",
+    skills: [
+      "Angular & TypeScript",
+      "Responsive UI Development",
+      "RxJS & State Management",
+      "REST API Integration",
+      "Web Performance & Accessibility",
+    ],
+    company: "NetSwagger",
+    companyEmail: "blee@netswagger.org",
+    address: ["Jalan Cibaduyut Lama", "Jawa Barat", "Indonesia"],
+    summary:
+      "Brandon Lee is a passionate Angular Frontend Developer specializing in building responsive, scalable, and user-friendly web applications. He transforms complex ideas into clean, modern digital experiences using Angular, TypeScript, and modern web technologies.",
+  },
+  {
     id: "12301708711685",
     name: "Pedro Diaz",
     layout: "profile",
