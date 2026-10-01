@@ -96,6 +96,26 @@ const payees: Payee[] = [
     companyEmail: "angel@netswagger.org",
     address: ["Poltava Street, Building 162, Apartment 5", "Karlivka, 39500", "Ukraine"],
   },
+  {
+    id: "12301708711796",
+    name: "Andrew Jeffrey",
+    layout: "profile",
+    role: "Senior Software Engineer",
+    skills: [
+      "Full-stack Development",
+      "Software Architecture & System Design",
+      "Cloud & DevOps Engineering",
+      "Technical Leadership & Mentoring",
+      "Performance, Reliability & Troubleshooting",
+    ],
+    summary:
+      "Andrew Jeffrey is a Senior Software Engineer skilled in scalable systems, full-stack development, cloud technologies, DevOps, performance optimization, and technical leadership.",
+    company: "NetSwagger",
+    phone: "+62 895613324304",
+    email: "andrewjeffrey464@outlook.com",
+    companyEmail: "andrew@netswagger.org",
+    address: ["Cibatu Raya Street, 6", "West Java, 40291", "Indonesia"],
+  },
 ];
 
 const recordId = /^\d{11,}$/;
